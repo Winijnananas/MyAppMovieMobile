@@ -24,7 +24,7 @@ export default function UserScreen({ navigation }) {
             {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
                 
                 <Image style={styles.image} source={require("../../assets/user.png")} />
-                <Text style={{ marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>NIRAN</Text>
+                <Text style={{ marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>NIRAN01</Text>
                 <TouchableOpacity style={styles.loginBtn}
                     onPress={() => navigation.navigate('TabNavigation')}>
                     
