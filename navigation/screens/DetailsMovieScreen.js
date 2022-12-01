@@ -38,18 +38,16 @@ export default function DetailsMovieScreen({navigation}) {
             <Text></Text>
           </View>
           <View style={styles.fixToText}>
-<<<<<<< Updated upstream
           <AntDesign name="left" size={24} color="black" /> 
           <Image
-              source={logogo} style={{ width: 355, height: 200}}
-=======
+              source={logogo} style={{ width: 355, height: 200}}/>
           <AntDesign name="left"
           onPress={() => navigation.navigate('HomeScreen')}
            size={24} color="black" /> 
           <Image
               source={logogo} style={{ width: 350, height: 200}}
   
->>>>>>> Stashed changes
+
           />
           </View>
           <View style={styles.fixToText}>
@@ -102,6 +100,7 @@ export default function DetailsMovieScreen({navigation}) {
         เดินทางมาที่อาคารนากาโตมิในลอสแอนเจลิสเพื่อร่วมงานเลี้ยงวันคริสต์มาสกับฮอลลี 
         ภรรยาที่ตอนนี้แยกกันอยู่ ขณะที่แมคเคลนกำลังเปลี่ยนชุด กลุ่มติดอาวุธนำโดยฮันส์ 
         กรูเบอร์ได้บุกเข้ามาในอาคาร แขกทั้งหมดถูกจับเป็นตัวประกัน ส่วนแมคเคลนลอบหนีออกมาได้ 
+        TEST
         </Text>
         
       </View>
@@ -214,9 +213,7 @@ const styles = StyleSheet.create({
     top: 4,
     elevation: 8,
   }
-<<<<<<< Updated upstream
 });
 
-=======
-});
->>>>>>> Stashed changes
+
+
