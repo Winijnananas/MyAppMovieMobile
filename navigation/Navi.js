@@ -13,7 +13,7 @@ import MainContainer from './MainContainer';
 import RegisterScreen from './screens/RegisterScreen';
 import UserScreen from './screens/UserScreen';
 import DetailsMovieScreen from './screens/DetailsMovieScreen';
-// import SplashScreen from './screens/SplashScreen';
+import SplashScreen from './screens/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,9 +72,10 @@ const Navigation = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}} >
             {/* <Stack.Screen name="Welcome" component={}/> */}
-            {/* <Stack.Screen name="Splash" component={SplashScreen} /> */}
+            
 
           {/* <Stack.Screen name="Welcome" component={WelcomeScreen} /> */}
+          <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Main" component={MainContainer}/>
           <Stack.Screen name="Regis" component={RegisterScreen}/>
