@@ -59,9 +59,18 @@ export default function DetailsMovieScreen({navigation}) {
             <Text></Text>
           </View>
           <View style={styles.fixToText}>
+<<<<<<< Updated upstream
           <AntDesign name="left" size={24} color="black" /> 
           <Image
               source={logogo} style={{ width: 355, height: 200}}
+=======
+          <AntDesign name="left"
+          onPress={() => navigation.navigate('HomeScreen')}
+           size={24} color="black" /> 
+          <Image
+              source={logogo} style={{ width: 350, height: 200}}
+  
+>>>>>>> Stashed changes
           />
           </View>
           <View style={styles.fixToText}>
@@ -228,5 +237,9 @@ const styles = StyleSheet.create({
     // borderBottomLeftRadius: 300,
     elevation: 8,
   }
+<<<<<<< Updated upstream
 });
 
+=======
+});
+>>>>>>> Stashed changes
