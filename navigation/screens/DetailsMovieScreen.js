@@ -17,10 +17,6 @@ import logogo from '../../assets/image/l-intro.jpg' ;
 import logos from '../../assets/image/Alan_Rickman.jpg' ;
 import logoes from '../../assets/image/BonnieBedelia.jpg' ;
 import { AntDesign } from '@expo/vector-icons'; 
-// import { getPoster, getLanguage } from '../services/MovieService';
-// import COLORS from "../constants/Colors";
-// import FONTS from "../constants/Fonts";
-// import { Video, AVPlaybackStatus } from 'expo-av';
 
 const { height, width } = Dimensions.get("window");
 
@@ -37,23 +33,6 @@ export default function DetailsMovieScreen({navigation}) {
         <Text>Detail Screen</Text>
       <ScrollView>
         <View>
-        {/* <Video style={styles.video}
-            source={{
-              uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-            }}
-            // useNativeControls
-            // resizeMode="contain"
-            // isLooping
-            // onPlaybackStatusUpdate={status => setStatus(() => status)}
-          /> */}
-          {/* <Video  
-              source={{ url: 'https://youtu.be/gYWvwkXreaI'}}
-          /> */}
-          {/* <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-            <Text style={styles.buttonText}>
-              Sign in with Facebook
-            </Text>
-          </LinearGradient> */}
           <View>
             <Text></Text>
             <Text></Text>
@@ -233,8 +212,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: setWidth((100 - 145) / 2),
     top: 4,
-    // borderBottomRightRadius: 300,
-    // borderBottomLeftRadius: 300,
     elevation: 8,
   }
 <<<<<<< Updated upstream
