@@ -14,6 +14,11 @@ import RegisterScreen from './screens/RegisterScreen';
 import UserScreen from './screens/UserScreen';
 import DetailsMovieScreen from './screens/DetailsMovieScreen';
 import SplashScreen from './screens/SplashScreen';
+import ProfileStack from './screens/Stack/ProfileStack';
+
+
+
+import { Use } from 'react-native-svg';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,6 +51,7 @@ function TabNavigation() {
             />
             <Tab.Screen
                 name='Setting'
+                // component={SettingStack}
                 component={SettingsScreen}
                 options={{
                     tabBarShowLabel: true,
@@ -56,7 +62,8 @@ function TabNavigation() {
             />
             <Tab.Screen
                 name='Profile'
-                component={UserScreen}
+                //component={UserScreen}
+                component={ProfileStack}
                 options={{
                     tabBarShowLabel: true,
                     tabBarIcon: ({ color, size }) => (
@@ -64,6 +71,7 @@ function TabNavigation() {
                     ),
                 }}
             />
+        
         </Tab.Navigator>
     )
 }

@@ -38,7 +38,7 @@ export default function DetailsMovieScreen({navigation}) {
             <Text></Text>
           </View>
           <View style={styles.fixToText}>
-          <AntDesign name="left" size={24} color="black" /> 
+          <AntDesign name="left" size={30} color="black" /> 
           <Image
               source={logogo} style={{ width: 355, height: 200}}/>
           <AntDesign name="left"

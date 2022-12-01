@@ -26,6 +26,20 @@ export default function SettingsScreen({ navigation }) {
         onValueChange={toggleSwitch}
         value={isEnabled}
       />
+      <Button
+      title='Move'
+      onPress={() => navigation.navigate('Home')}
+
+
+      />
+
+<Button 
+      title=' MOVE EDIT SCREEN'
+      onPress={() => navigation.navigate('EditScreen')}
+      color='red'
+
+
+      />
       
     </View>
     );
