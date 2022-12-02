@@ -15,6 +15,7 @@ import UserScreen from './screens/UserScreen';
 import DetailsMovieScreen from './screens/DetailsMovieScreen';
 import SplashScreen from './screens/SplashScreen';
 import ProfileStack from './screens/Stack/ProfileStack';
+import LoginPage from './screens/LoginPage';
 
 
 
@@ -84,12 +85,15 @@ const Navigation = () => {
 
           {/* <Stack.Screen name="Welcome" component={WelcomeScreen} /> */}
           <Stack.Screen name="Splash" component={SplashScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={LoginPage}/>
+          {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+          
           <Stack.Screen name="Main" component={MainContainer}/>
           <Stack.Screen name="Regis" component={RegisterScreen}/>
           <Stack.Screen name='User' component={UserScreen}/>
           <Stack.Screen name='Details' component={DetailsMovieScreen}/>
           <Stack.Screen name="TabNavigation" component={TabNavigation} />
+          {/* <Stack.Screen name="Home" component={HomeScreen}/> */}
           
           {/* <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />

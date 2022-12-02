@@ -12,7 +12,7 @@ export default function SplashScreen({navigation}) {
     <View
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Image style={styles.image} source={require("../../assets/master2.png")} />
-      <Text>MOVIE APP 👋</Text>
+      <Text style={{fontWeight:'bold'}}>MOVIE APP RECOMMENDED👋</Text>
   
     </View>
   )
