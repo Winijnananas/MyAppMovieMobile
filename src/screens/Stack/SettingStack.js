@@ -9,7 +9,7 @@ const SettingStack = () =>{
     <Stack.Navigator>
       <Stack.Screen
       name='SettingScreen'
-      component={SettingDetail}
+      component={SettingDetails}
       />
       <Stack.Screen
       name='EditScreen'

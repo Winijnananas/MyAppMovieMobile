@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, Button, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Image, ImageBackground, Pressable, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -49,6 +50,7 @@ export default function UserScreen({ navigation }) {
                     onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.logOutBtn}>LogOut</Text>
                 </TouchableOpacity>
+                <MaterialCommunityIcons name="cog" />
 
                 <Text>
                     TEST1

@@ -34,9 +34,7 @@ const Separator = () => (
 
 export default function HomeScreen({ navigation }) {
     return (
-    //  <SafeAreaView>
-    //     <Header/>
-    //  </SafeAreaView>
+
     <SafeAreaView style={styles.container}>
 <ScrollView>
   <View>
