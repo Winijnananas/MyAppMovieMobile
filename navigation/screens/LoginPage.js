@@ -5,6 +5,9 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 // import { auth } from '../../firbase'
 
 
+
+// const navigation = useNavigation()
+
 const LoginPage = ({navigation}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,15 +24,15 @@ const LoginPage = ({navigation}) => {
     //   return unsubscribe
     // }, [])
   
-    // const handleSignUp = () => {
-    //   auth
-    //     .createUserWithEmailAndPassword(email, password)
-    //     .then(userCredentials => {
-    //       const user = userCredentials.user;
-    //       console.log('Registered with:', user.email);
-    //     })
-    //     .catch(error => alert(error.message))
-    // }
+//    const handleSignUp =() =>{
+//     auth
+//     .creatUserWithEmailAndPassword(email,password)
+//     .then(UserCredentials=>{
+//         const user = UserCredentials.user;
+//         console.log(user.email);
+    
+//     }).catch(error => alert(error.message))
+//    }
   
     // const handleLogin = () => {
     //   auth
@@ -70,7 +73,8 @@ return (
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>navigation.navigate('Regis')}
+        //   onPress={() =>navigation.navigate('Regis')}
+          onPress={()=>navigation.navigate('Regis')}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
