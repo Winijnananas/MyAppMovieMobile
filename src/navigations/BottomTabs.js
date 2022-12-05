@@ -8,6 +8,7 @@ import DetailsScreen from "../screens/FavoriteScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import ProfileStack from "../screens/Stack/ProfileStack";
 import AboutScreen from "../screens/AboutScreen";
+import UserScreen from "../screens/UserScreen";
 
 
 
@@ -55,7 +56,7 @@ export default function TabNavigation() {
             />
             <Tab.Screen
                 name='User'
-                component={ProfileStack}
+                component={UserScreen}
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color, size }) => (

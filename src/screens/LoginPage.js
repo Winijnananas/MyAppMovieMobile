@@ -1,6 +1,7 @@
 // import { async } from '@firebase/util';
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View ,ScrollView,SafeAreaView} from 'react-native'
 // import { auth } from '../../firbase'
 
@@ -24,15 +25,15 @@ const LoginPage = ({navigation}) => {
     //   return unsubscribe
     // }, [])
   
-//    const handleSignUp =() =>{
-//     auth
-//     .creatUserWithEmailAndPassword(email,password)
-//     .then(UserCredentials=>{
-//         const user = UserCredentials.user;
-//         console.log(user.email);
+  //  const handleSignUp =() =>{
+  //   auth
+  //   .creatUserWithEmailAndPassword(email,password)
+  //   .then(UserCredentials=>{
+  //       const user = UserCredentials.user;
+  //       console.log(user.email);
     
-//     }).catch(error => alert(error.message))
-//    }
+  //   }).catch(error => alert(error.message))
+  //  }
   
     // const handleLogin = () => {
     //   auth
@@ -49,7 +50,7 @@ return (
       behavior="padding"
     >
       <View style={styles.inputContainer}>
-        <Text style={{paddingHorizontal: 15,paddingVertical: 10,alignItems:'center',justifyContent: 'center',fontWeight:'bold',fontSize:50}}>LOGIN SCREEN </Text>
+        <Text style={{paddingHorizontal: 15,paddingVertical: 10,alignItems:'center',justifyContent: 'center',fontWeight:'bold',fontSize:35,left:25}}>LOGIN SCREEN </Text>
         <TextInput
           placeholder="Email"
           value={email}
