@@ -9,6 +9,7 @@ import SettingsScreen from "../screens/SettingsScreen";
 import ProfileStack from "../screens/Stack/ProfileStack";
 import AboutScreen from "../screens/AboutScreen";
 import UserScreen from "../screens/UserScreen";
+import Home from "../screens/Home";
 
 
 
@@ -23,7 +24,7 @@ export default function TabNavigation() {
             <Tab.Screen
                 
                 name="Home"
-                component={HomeScreen}
+                component={Home}
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color, size }) => (
