@@ -6,7 +6,7 @@ export default function SplashScreen({navigation}) {
         setTimeout(() => {
             navigation.replace('Login');
         //    handleGetToken();
-        }, 3000);
+        }, 2000);
       })
   return (
     <View
