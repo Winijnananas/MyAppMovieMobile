@@ -11,7 +11,8 @@ export default function RegisterScreen({ navigation }) {
     const [confirm, onChangeText4] = React.useState("");
 
 
-    const API = "http://192.168.1.31:3000/users";
+    const API = "http://172.16.156.81:3000/users";
+    // const API = "http://127.0.0.1:3000/users";
     const register = () => {
         if(!username || !email || !password ) {
           alert('Complete your information');
