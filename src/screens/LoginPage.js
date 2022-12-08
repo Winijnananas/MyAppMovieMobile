@@ -9,7 +9,7 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 
 // const navigation = useNavigation()
 
-const LoginPage = ({navigation}) => {
+const LoginPage = ({navigation}) => { 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
