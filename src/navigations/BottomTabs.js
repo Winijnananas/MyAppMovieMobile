@@ -24,7 +24,7 @@ export default function TabNavigation() {
             <Tab.Screen
                 
                 name="Home"
-                component={Home}
+                component={HomeScreen}
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color, size }) => (
