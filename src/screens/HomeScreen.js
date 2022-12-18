@@ -1,4 +1,5 @@
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React,{ useState,useEffect} from 'react';
 import Header from '../compenents/Header';
 import { 
   Image, 
@@ -14,7 +15,7 @@ import {
   ImageBackground,
   Pressable
 } from 'react-native';
-import * as React from 'react';
+
 import logo from '../../assets/image/dieHard.jpg';
 import logogo from '../../assets/image/l-intro.jpg' ;
 import logos from '../../assets/image/theDarkKnight.jpg' ;
@@ -33,6 +34,30 @@ const Separator = () => (
 );
 
 export default function HomeScreen({ navigation }) {
+  const [user, setUser] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const fetchUser = async ()  =>{
+    const accessToken = await AsyncStorage.getItem('@accessToken')
+    const response = await fetch('https://www.melivecode.com/api/auth/user',{
+        method:'GET',
+        headers:{
+            'Content-Type':'application/json',
+            'Authorization' : 'Bearer ' + accessToken
+        },
+    })
+    const data = await response.json()
+    // console.log(data)
+    // if(data.status === 'forbidden'){
+    //     navigation.navigate('Regis')
+    // }
+    
+    setUser(data.user)
+    setIsLoading(false)
+    
+}
+useEffect(()=>{
+    fetchUser()
+},[isLoading])
     return (
 
     <SafeAreaView style={styles.container}>
@@ -44,7 +69,9 @@ export default function HomeScreen({ navigation }) {
     </View>
     <View style={styles.fixToText}>
       <Text style={styles.title1} >
-      Now Showing
+      
+      {/* Now Showing */}
+      <Text style={{fontWeight:'bold',fontSize:30}}>Hello, {user.fname}</Text>
       </Text>
       <Text style={styles.title} size={5}>
       VIEW ALL

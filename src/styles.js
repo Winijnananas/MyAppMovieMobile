@@ -10,9 +10,12 @@ const styles = StyleSheet.create({
     paddingVertical: 20
   },
   title: {
+    left:145,
+    justifyContent: 'center',
+    
     fontSize: 35,
-    marginTop: 30,
-    marginBottom: 25,
+    marginTop: 250,
+    marginBottom: 10,
     fontWeight: "800",
     color: "#fff",
   },
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderWidth: 1,
     borderColor: "#3D3D3D",
-    borderRadius: 1,
+    borderRadius: 5,
     backgroundColor: "#FFFF",
     padding: 10,
     color: "#A9A9A9",
@@ -56,7 +59,24 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 25,
     textAlign: "center",
-  }
+  },
+  loginBtn: {
+            borderWidth: 0.15,
+            borderRadius: 5,
+            padding: 10,
+            backgroundColor: "#BF1700",
+            width: "100%",
+            alignItems: "center",
+            color: "white",
+            fontWeight: 'bold',
+            marginBottom: 10
+        },
+        image: {
+          marginTop:200,
+          height: 100,
+          width: 300,
+          
+      },
 });
 
 module.exports = styles;

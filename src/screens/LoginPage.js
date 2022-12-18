@@ -2,16 +2,18 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View ,ScrollView,SafeAreaView} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View ,ScrollView,SafeAreaView,Image,Alert} from 'react-native'
 // import { auth } from '../../firbase'
 import styles from '../styles';
-
+import axios from 'axios';
 
 // const navigation = useNavigation()
 
 const LoginPage = ({navigation}) => { 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [email, onChangeText2] = React.useState("");
+    
 
     // const navigation = useNavigation()
 
@@ -25,15 +27,73 @@ const LoginPage = ({navigation}) => {
     //   return unsubscribe
     // }, [])
   
-  //  const handleSignUp =() =>{
-  //   auth
-  //   .creatUserWithEmailAndPassword(email,password)
-  //   .then(UserCredentials=>{
-  //       const user = UserCredentials.user;
-  //       console.log(user.email);
-    
-  //   }).catch(error => alert(error.message))
-  //  }
+
+    // const API = "http://192.168.1.31:3000/users";
+    // // const API = "http://127.0.0.1:3000/users";
+    // const login = () => {
+    //     if(!username || !email || !password ) {
+    //       alert('Complete your information');
+    //       return;
+    //     }
+    //     // if(password !== confirm){
+    //     //     alert('Password not match,Please Try Again')
+    //     //     return;
+    //     // }
+    //     axios.post(API, {
+    //       username: username,
+    //       email: email,
+    //       password: password,
+
+    //     })
+    //     .then((response) => {
+    //       if(response.data.status === 'ok') {
+    //         // alert('LOGIN COMPLETE')
+    //         navigation.navigate('TabNavigation');
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log('Can not connect',error.message);
+    //     })
+    //   }
+
+   const handleLogin =async () =>{
+    const response = await fetch('https://www.melivecode.com/api/login',{
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username:username,
+      password:password,
+      expiresIn:60000
+      
+      // expiresIn:60000
+    })
+    })
+    const data = await response.json()
+    if(data.status == 'ok'){
+      Alert.alert(
+        data.status,
+        data.message,
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
+      await AsyncStorage.setItem('@accessToken', data.accessToken)
+      const accessToken = await AsyncStorage.getItem('@accessToken')
+      // navigation.navigate('User')
+      navigation.navigate('TabNavigation')
+      console.log(accessToken)
+    }else{
+      Alert.alert(
+        data.status,
+        data.message,
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+      );
+    }
+   }
   
     // const handleLogin = () => {
     //   auth
@@ -49,13 +109,27 @@ return (
       style={styles.container}
       behavior="padding"
     >
+      
       <View style={{display: 'flex', justifyContent: 'flex-start', height: '100%'}}>
-      <Text style={styles.title}>Login</Text>
+     
+      <Text style={styles.title}>SIGN IN</Text>
+      
         <View>
+        {/* <TextInput 
+            style={styles.textInput}
+            onChangeText={onChangeText2}
+            value={email}
+            placeholderTextColor="#A9A9A9"
+            // secureTextEntry 
+            // right={<TextInput.Icon icon="eye"/>}
+            // secureTextEntry={true}
+            // autoCapitalize = 'none'
+            placeholder="Email" /> */}
+
           <TextInput 
             style={styles.textInput}
-            onChangeText={setEmail}
-            value={email}
+            onChangeText={setUsername}
+            value={username}
             placeholderTextColor="#A9A9A9"
             autoCapitalize = 'none'
             placeholder="Username" />
@@ -65,15 +139,22 @@ return (
             onChangeText={setPassword}
             value={password}
             placeholderTextColor="#A9A9A9"
+            // secureTextEntry 
+            // right={<TextInput.Icon icon="eye"/>}
             secureTextEntry={true}
             autoCapitalize = 'none'
             placeholder="Password" />
+            
 
           <TouchableOpacity
             style={styles.loginButton}
             onPress={() =>navigation.navigate('TabNavigation')}
+            // onPress={login}
           >
-            <Text style={styles.buttonLabel}>LOGIN</Text>
+            <Text style={styles.buttonLabel}
+            // onPress={login}
+            // onPress={() => Alert.alert('Login Complete ')}
+            >LOGIN</Text>
           </TouchableOpacity>
 
           { /* register */}
