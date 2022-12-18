@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     width: "100%",
     borderWidth: 1,
     borderColor: "#3D3D3D",
-    borderRadius: 7,
-    backgroundColor: "#212121",
+    borderRadius: 1,
+    backgroundColor: "#FFFF",
     padding: 10,
     color: "#A9A9A9",
     fontWeight: "700",
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     borderWidth: 1,
-    borderRadius: 7,
+    borderRadius: 10,
     padding: 10,
-    backgroundColor: "#2563EB",
+    backgroundColor: "#BF1700",
   },
   buttonLabel: {
     color: "#FFF",

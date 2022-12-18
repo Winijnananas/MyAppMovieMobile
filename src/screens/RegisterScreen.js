@@ -44,9 +44,9 @@ export default function RegisterScreen({ navigation }) {
 
     return (
         
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#D7D7D7' }}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1B1B1B' }}>
             
-            <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 5, right: 120,left:4 }}>Register</Text>
+            <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 5, right: 120,left:4 ,color:'white'}}>Register</Text>
             <TextInput
                 
                 placeholder='UserName'
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderRadius: 4,
         padding: 10,
-        backgroundColor: "#A5A5A5",
+        backgroundColor: "#FFFF",
         width: "80%",
         alignItems: "center",
         // color: '#404040'
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     },
     loginBtn: {
         borderWidth: 0.15,
-        borderRadius: 4,
+        borderRadius: 5,
         padding: 10,
         backgroundColor: "#BF1700",
         width: "80%",

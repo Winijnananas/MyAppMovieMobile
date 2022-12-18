@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View ,ScrollView,SafeAreaView} from 'react-native'
 // import { auth } from '../../firbase'
-
+import styles from '../styles';
 
 
 // const navigation = useNavigation()
@@ -49,37 +49,40 @@ return (
       style={styles.container}
       behavior="padding"
     >
-      <View style={styles.inputContainer}>
-        <Text style={{paddingHorizontal: 15,paddingVertical: 10,alignItems:'center',justifyContent: 'center',fontWeight:'bold',fontSize:35,left:25}}>LOGIN SCREEN </Text>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={text => setEmail(text)}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={text => setPassword(text)}
-          style={styles.input}
-          secureTextEntry
-        />
-      </View>
+      <View style={{display: 'flex', justifyContent: 'flex-start', height: '100%'}}>
+      <Text style={styles.title}>Login</Text>
+        <View>
+          <TextInput 
+            style={styles.textInput}
+            onChangeText={setEmail}
+            value={email}
+            placeholderTextColor="#A9A9A9"
+            autoCapitalize = 'none'
+            placeholder="Username" />
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() =>navigation.navigate('TabNavigation')}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-        //   onPress={() =>navigation.navigate('Regis')}
-          onPress={()=>navigation.navigate('Regis')}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Register</Text>
-        </TouchableOpacity>
+          <TextInput 
+            style={styles.textInput}
+            onChangeText={setPassword}
+            value={password}
+            placeholderTextColor="#A9A9A9"
+            secureTextEntry={true}
+            autoCapitalize = 'none'
+            placeholder="Password" />
+
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() =>navigation.navigate('TabNavigation')}
+          >
+            <Text style={styles.buttonLabel}>LOGIN</Text>
+          </TouchableOpacity>
+
+          { /* register */}
+          <TouchableOpacity style={{marginVertical: 10}}
+            onPress={() => {navigation.navigate('Regis')}}
+          >
+            <Text style={{color: '#FFFF', fontWeight: '700', textDecorationLine: 'underline', fontSize: 15, textAlign: 'left'}}>Register your Account</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </KeyboardAvoidingView>
   )
@@ -87,50 +90,50 @@ return (
 
 export default LoginPage
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    inputContainer: {
-      width: '80%'
-    },
-    input: {
-      backgroundColor: 'white',
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-      borderRadius: 0,
-      marginTop: 5,
-    },
-    buttonContainer: {
-      width: '80%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 40,
-    },
-    button: {
-      backgroundColor: '#BF1700',
-      width: '100%',
-      padding: 15,
-      borderRadius: 2,
-      alignItems: 'center',
-    },
-    buttonOutline: {
-      backgroundColor: 'white',
-      marginTop: 5,
-      borderColor: 'white',
-      borderWidth: 2,
-    },
-    buttonText: {
-      color: 'white',
-      fontWeight: '700',
-      fontSize: 16,
-      width:50
-    },
-    buttonOutlineText: {
-      color: '#BF1700',
-      fontWeight: '700',
-      fontSize: 16,
-    },
-})
+// const styles = StyleSheet.create({
+//     container: {
+//       flex: 1,
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//     },
+//     inputContainer: {
+//       width: '80%'
+//     },
+//     input: {
+//       backgroundColor: 'white',
+//       paddingHorizontal: 15,
+//       paddingVertical: 10,
+//       borderRadius: 0,
+//       marginTop: 5,
+//     },
+//     buttonContainer: {
+//       width: '80%',
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       marginTop: 40,
+//     },
+//     button: {
+//       backgroundColor: '#BF1700',
+//       width: '100%',
+//       padding: 15,
+//       borderRadius: 2,
+//       alignItems: 'center',
+//     },
+//     buttonOutline: {
+//       backgroundColor: 'white',
+//       marginTop: 5,
+//       borderColor: 'white',
+//       borderWidth: 2,
+//     },
+//     buttonText: {
+//       color: 'white',
+//       fontWeight: '700',
+//       fontSize: 16,
+//       width:50
+//     },
+//     buttonOutlineText: {
+//       color: '#BF1700',
+//       fontWeight: '700',
+//       fontSize: 16,
+//     },
+// })

@@ -10,7 +10,7 @@ import ProfileStack from "../screens/Stack/ProfileStack";
 import AboutScreen from "../screens/AboutScreen";
 import UserScreen from "../screens/UserScreen";
 import Home from "../screens/Home";
-
+import FeedScreen from "../screens/FeedScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -28,7 +28,18 @@ export default function TabNavigation() {
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="home" color={color} size={size} />
+                        //<MaterialCommunityIcons name="home" color={color} size={size} />
+                        <MaterialCommunityIcons name="home-variant" color={color} size={size} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name='Feed'
+                component={FeedScreen}
+                options={{
+                    tabBarShowLabel: false,
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="movie-search" color={color} size={size} />
                     ),
                 }}
             />
@@ -39,7 +50,8 @@ export default function TabNavigation() {
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="bookmark-multiple" color={color} size={size} />
+                        //<MaterialCommunityIcons name="bookmark-multiple" color={color} size={size} />
+                        <MaterialCommunityIcons name="heart-multiple" color={color} size={size} />
                     ),
                 }}
             />
