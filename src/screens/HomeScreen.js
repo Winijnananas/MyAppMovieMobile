@@ -71,7 +71,7 @@ useEffect(()=>{
       <Text style={styles.title1} >
       
       {/* Now Showing */}
-      <Text style={{fontWeight:'bold',fontSize:30}}>Hello, {user.fname}</Text>
+      <Text style={{fontWeight:'bold',fontSize:30}}>Hello, </Text>
       </Text>
       <Text style={styles.title} size={5}>
       VIEW ALL
