@@ -56,44 +56,44 @@ const LoginPage = ({navigation}) => {
     //     })
     //   }
 
-   const handleLogin =async () =>{
-    const response = await fetch('https://www.melivecode.com/api/login',{
-    method: 'POST',
-    headers:{
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      username:username,
-      password:password,
-      expiresIn:60000
+  //  const handleLogin =async () =>{
+  //   const response = await fetch('https://www.melivecode.com/api/login',{
+  //   method: 'POST',
+  //   headers:{
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     username:username,
+  //     password:password,
+  //     expiresIn:60000
       
-      // expiresIn:60000
-    })
-    })
-    const data = await response.json()
-    if(data.status == 'ok'){
-      Alert.alert(
-        data.status,
-        data.message,
-        [
-          { text: "OK", onPress: () => console.log("OK Pressed") }
-        ]
-      );
-      await AsyncStorage.setItem('@accessToken', data.accessToken)
-      const accessToken = await AsyncStorage.getItem('@accessToken')
-      // navigation.navigate('User')
-      navigation.navigate('TabNavigation')
-      console.log(accessToken)
-    }else{
-      Alert.alert(
-        data.status,
-        data.message,
-        [
-          { text: "OK", onPress: () => console.log("OK Pressed") }
-        ]
-      );
-    }
-   }
+  //     // expiresIn:60000
+  //   })
+  //   })
+  //   const data = await response.json()
+  //   if(data.status == 'ok'){
+  //     Alert.alert(
+  //       data.status,
+  //       data.message,
+  //       [
+  //         { text: "OK", onPress: () => console.log("OK Pressed") }
+  //       ]
+  //     );
+  //     await AsyncStorage.setItem('@accessToken', data.accessToken)
+  //     const accessToken = await AsyncStorage.getItem('@accessToken')
+  //     // navigation.navigate('User')
+  //     navigation.navigate('TabNavigation')
+  //     console.log(accessToken)
+  //   }else{
+  //     Alert.alert(
+  //       data.status,
+  //       data.message,
+  //       [
+  //         { text: "OK", onPress: () => console.log("OK Pressed") }
+  //       ]
+  //     );
+  //   }
+  //  }
   
     // const handleLogin = () => {
     //   auth
