@@ -63,8 +63,8 @@ export default function UserScreen({ navigation }) {
                         {/* <Image source={{uri: user.avatar}}
                         style={{width:150,height:150}}
                         /> */}
-                        <Text style={{fontSize:20,left:40,fontWeight:'bold',alignContent:'center',marginBottom:5}}>{user.fname}{user.lname}</Text>
-                        <Text style={{marginBottom:200}}>{user.email}</Text>
+                        {/* <Text style={{fontSize:20,left:40,fontWeight:'bold',alignContent:'center',marginBottom:5}}>{user.fname}{user.lname}</Text>
+                        <Text style={{marginBottom:200}}>{user.email}</Text> */}
                     </SafeAreaView>
                 }
                 {/* <Text style={{ marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>NIRAN01</Text>
