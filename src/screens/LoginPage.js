@@ -6,13 +6,42 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 // import { auth } from '../../firbase'
 import styles from '../styles';
 import axios from 'axios';
+//import { MYAPP_API } from "@env";
 
 // const navigation = useNavigation()
-
+const API = "http://10.200.8.111:3000/login";
 const LoginPage = ({navigation}) => { 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [email, onChangeText2] = React.useState("");
+
+    const _storeData = async (data) => {
+      try {
+          await AsyncStorage.setItem('@Token', data);
+          //console.log(data);
+          navigation.navigate('TabNavigation');
+      } catch(err){
+          console.log(err);
+      }
+  }
+
+  const Login = ({ }) => { console.log('login');
+         //axios.post(`${MYAPP_API}}/login`
+         axios.post(`http://10.200.8.111:3000/login`,
+         {
+            username: username,
+            password: password
+        })
+        .then((response) => {
+            if(response.data.status === 'ok'){
+                _storeData(response.data.token);
+            } else{
+                alert('Login fail');
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
     
 
     // const navigation = useNavigation()
@@ -28,33 +57,35 @@ const LoginPage = ({navigation}) => {
     // }, [])
   
 
-    // const API = "http://192.168.1.31:3000/users";
-    // // const API = "http://127.0.0.1:3000/users";
-    // const login = () => {
-    //     if(!username || !email || !password ) {
-    //       alert('Complete your information');
-    //       return;
-    //     }
-    //     // if(password !== confirm){
-    //     //     alert('Password not match,Please Try Again')
-    //     //     return;
-    //     // }
-    //     axios.post(API, {
-    //       username: username,
-    //       email: email,
-    //       password: password,
+   // const API = "http://192.168.47.1:3000/users";
 
-    //     })
-    //     .then((response) => {
-    //       if(response.data.status === 'ok') {
-    //         // alert('LOGIN COMPLETE')
-    //         navigation.navigate('TabNavigation');
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log('Can not connect',error.message);
-    //     })
-    //   }
+    
+    // const API = "http://127.0.0.1:3000/users";
+  //   const login = () => {
+  //       if(!username || !email || !password ) {
+  //         alert('Complete your information');
+  //         return;
+  //       }
+  //       if(password !== confirm){
+  //           alert('Password not match,Please Try Again')
+  //           return;
+  //       }
+  //       axios.post(API, {
+  //         username: username,
+  //         email: email,
+  //         password: password,
+
+  //       })
+  //       .then((response) => {
+  //         if(response.data.status === 'ok') {
+  //           // alert('LOGIN COMPLETE')
+  //           navigation.navigate('TabNavigation');
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log('Can not connect',error.message);
+  //       })
+  //     }
 
   //  const handleLogin =async () =>{
   //   const response = await fetch('https://www.melivecode.com/api/login',{
@@ -148,8 +179,8 @@ return (
 
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() =>navigation.navigate('TabNavigation')}
-            // onPress={login}
+            // onPress={() =>navigation.navigate('TabNavigation')}
+            onPress={Login}
           >
             <Text style={styles.buttonLabel}
             // onPress={login}

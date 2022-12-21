@@ -3,21 +3,24 @@ import * as React from 'react';
 import { KeyboardAvoidingView,View, Text, SafeAreaView, TextInput, StyleSheet, Button, TouchableOpacity, Image, Pressable } from 'react-native';
 import styles from '../styles';
 import axios from 'axios';
+import { ScrollView } from 'react-native-gesture-handler';
+//import { MYAPP_API } from "@env";
 
 export default function RegisterScreen({ navigation }) {
-    const [username, onChangeText1] = React.useState("");
-    const [email, onChangeText2] = React.useState("");
-    const [password, onChangeText3] = React.useState("")
-    const [confirm, onChangeText4] = React.useState("");
+    const [username, setUsername] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("")
+    const [confirm, setConfirm] = React.useState("");
+    const [fname,SetfName] = React.useState("");
 
 
 
 
     
-    const API = "http://192.168.1.31:3000/users";
+   const API = "http://10.200.8.111:3000/users";
     // const API = "http://127.0.0.1:3000/users";
     const register = () => {
-        if(!username || !email || !password ) {
+        if(!username || !email || !password || !fname ) {
           alert('Complete your information');
           return;
         }
@@ -25,10 +28,16 @@ export default function RegisterScreen({ navigation }) {
             alert('Password not match,Please Try Again')
             return;
         }
-        axios.post(API, {
+        //axios.post(`${MYAPP_API}}/users`,
+        axios.post(`http://10.200.8.111:3000/users`,
+       
+        {
+          fname : fname,
           username: username,
           email: email,
           password: password,
+         
+
         })
         .then((response) => {
           if(response.data.status === 'ok') {
@@ -43,47 +52,59 @@ export default function RegisterScreen({ navigation }) {
 
 
     return (
-        <KeyboardAvoidingView
+      <KeyboardAvoidingView
       style={styles.container}
       behavior="padding"
     >
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#1B1B1B' }}>
-            
-            <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 5, right: 120,left:4 ,color:'white'}}>REGISTER   </Text>
-            <TextInput
-                
-                placeholder='UserName'
-                style={styles.textInput}
-                onChangeText={onChangeText1}
-                value={username}    
-            />
+       
+            <View style={{display: 'flex', justifyContent: 'flex-start', height: '100%'}}> 
+            <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 10, marginTop: 80,right: 120,left:4 ,color:'white'}}>REGISTER   </Text>
+            <View>
+
             <TextInput
                 placeholder='Email'
                 style={styles.textInput}
-                onChangeText={onChangeText2}
+                onChangeText={setEmail}
                 value={email}
             />
+            <TextInput
+                
+                placeholder='Fullname'
+                style={styles.textInput}
+                onChangeText={SetfName}
+                value={fname}    
+            />
+            <TextInput
+                
+                placeholder='Username'
+                style={styles.textInput}
+                onChangeText={setUsername}
+                value={username}    
+            />
+      
             <TextInput
                 secureTextEntry={true}
                 placeholder='Password'
                 style={styles.textInput}
-                onChangeText={onChangeText3}
+                onChangeText={setPassword}
                 value={password}
             />
             <TextInput
                 secureTextEntry={true}
                 placeholder='ConfirmPassword'
                 style={styles.textInput}
-                onChangeText={onChangeText4}
+                onChangeText={setConfirm}
                 value={confirm}
             />
-            <TouchableOpacity style={styles.loginBtn}
+            <TouchableOpacity style={styles.RegisBtn}
                 onPress={register}>
                 <Text style={styles.buttonLabel}>SUBMIT</Text>
             </TouchableOpacity>
-
-        </SafeAreaView>
+            </View>
+            </View>
+       
 </KeyboardAvoidingView>
+        
     )
 }
 

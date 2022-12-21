@@ -38,7 +38,7 @@ export default function HomeScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true)
   const fetchUser = async ()  =>{
     const accessToken = await AsyncStorage.getItem('@accessToken')
-    const response = await fetch('https://www.melivecode.com/api/auth/user',{
+    const response = await fetch('http://192.168.47.1:3000/users',{
         method:'GET',
         headers:{
             'Content-Type':'application/json',
@@ -71,7 +71,7 @@ useEffect(()=>{
       <Text style={styles.title1} >
       
       {/* Now Showing */}
-      <Text style={{fontWeight:'bold',fontSize:30}}>Hello, </Text>
+      <Text style={{fontWeight:'bold',fontSize:30}}>Hello, {user.fname}</Text>
       </Text>
       <Text style={styles.title} size={5}>
       VIEW ALL

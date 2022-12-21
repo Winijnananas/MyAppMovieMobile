@@ -60,6 +60,18 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
   },
+  
+  RegisBtn: {
+    borderWidth: 0.15,
+    borderRadius: 5,
+    padding: 10,
+    backgroundColor: "#BF1700",
+    width: "100%",
+    alignItems: "center",
+    color: "white",
+    fontWeight: 'bold',
+    marginBottom: 10
+},
   loginBtn: {
             borderWidth: 0.15,
             borderRadius: 5,

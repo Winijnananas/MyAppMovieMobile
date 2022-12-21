@@ -22,6 +22,7 @@ export default function LoginScreen({ navigation }) {
         style={styles.input}
         onChangeText={onChangeText1}
         value={username}
+        clearButtonMode="always"
       />
       <TextInput
         style={styles.input}
@@ -29,6 +30,7 @@ export default function LoginScreen({ navigation }) {
         value={password}
         placeholder="password"
         keyboardType="numeric"
+        clearButtonMode="always"
       />
       <TouchableOpacity style={styles.loginBtn}
         onPress={() => navigation.navigate('TabNavigation')}>

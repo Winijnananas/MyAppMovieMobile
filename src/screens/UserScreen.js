@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import React,{ useState,useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
+
 
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,37 +13,21 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 
 export default function UserScreen({ navigation }) {
-    const [editprofile, onChangeText] = React.useState("Edit Profile"); 
+   // const [editprofile, onChangeText] = React.useState("Edit Profile"); 
     const [user, setUser] = useState({})
-    const [isLoading, setIsLoading] = useState(true)
+   // const [isLoading, setIsLoading] = useState(true)
 
-    const fetchUser = async ()  =>{
-        const accessToken = await AsyncStorage.getItem('@accessToken')
-        const response = await fetch('https://www.melivecode.com/api/auth/user',{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization' : 'Bearer ' + accessToken
-            },
-        })
-        const data = await response.json()
-        console.log(data)
-        if(data.status === 'forbidden'){
-            navigation.navigate('Login')
+    const Logout = async() => {
+        const navigation = useNavigation();
+        const logout = async() => {
+            try {
+                await AsyncStorage.removeItem('@Token');
+                navigation.replace('Login');
+            }catch(error){
+                console.log(error.message);
+            }
         }
-        
-        setUser(data.user)
-        setIsLoading(false)
-        
     }
-    useEffect(()=>{
-        fetchUser()
-    },[isLoading])
-
-    // logout=()=>{
-    //     AsyncStorage.clear()
-    //     // this.props.navigation.navigate("Login")
-    // }
 
     return (
         <ScrollView>
@@ -55,46 +41,11 @@ export default function UserScreen({ navigation }) {
                 {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
 
                 <Image style={styles.image} source={require("../../assets/user.png")} />
-                {
-                    isLoading ?
-                    <Text>Loading</Text>
-                    :
-                    <SafeAreaView>
-                        {/* <Image source={{uri: user.avatar}}
-                        style={{width:150,height:150}}
-                        /> */}
-                        {/* <Text style={{fontSize:20,left:40,fontWeight:'bold',alignContent:'center',marginBottom:5}}>{user.fname}{user.lname}</Text>
-                        <Text style={{marginBottom:200}}>{user.email}</Text> */}
-                    </SafeAreaView>
-                }
-                {/* <Text style={{ marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>NIRAN01</Text>
-                <TouchableOpacity style={styles.loginBtn}
-                    onPress={() => navigation.navigate('TabNavigation')}>
-
-                    <Text style={{ color: "black", fontWeight: '', fontStyle: 'italic', fontSize: 12 }}>user101.@gmail.com</Text>
-                </TouchableOpacity>
-
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={editprofile}
-                />
-                <TouchableOpacity style={styles.loginBtn}
-                    onPress={() => navigation.navigate('EditScreen')}>
-                    <Text style={styles.logOutBtn}>Edit Profile</Text>
-                </TouchableOpacity> */}
+               
                 
-
-                {/* button logout */}
-
-                {/* <Button
-                onPress={fetchUser}
-                title="Reload"
-                color="blue"
-                /> */}
                 <TouchableOpacity style={styles.loginBtn}
                 // onPress={fetchUser}
-                onPress={fetchUser}
+                onPress={Logout}
                     // onPress={() => navigation.navigate('Login')}
                     >
                     <Text style={styles.logOutBtn}>LogOut</Text>
@@ -110,6 +61,7 @@ export default function UserScreen({ navigation }) {
 
     );
 }
+
 const styles = StyleSheet.create({
     input: {
         height: 40,
