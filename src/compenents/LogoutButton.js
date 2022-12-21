@@ -9,8 +9,6 @@ export default function LogoutButton() {
   const Logout = async() => {
     try {
       await AsyncStorage.removeItem('@Token');
-      await AsyncStorage.removeItem('UserDetails');
-      await AsyncStorage.removeItem('goal');
       console.log('logout');
       { /* เปลี่ยนจาก navigate เป็น replace เพราะไม่ต้องการให้ user สามารถกลับไปหน้า profile หลังจาก logoutก */ }
       navigation.replace('Splash');
@@ -27,12 +25,12 @@ export default function LogoutButton() {
 
 const styles = StyleSheet.create({
   card: {
-    borderWidth: 1,
-    borderColor: '#B24129',
+    marginTop:350,
+    width:200,
     borderRadius: 7,
     paddingHorizontal: 10,
     paddingVertical: 15,
-    backgroundColor: '#D34C2F',
+    backgroundColor: '#BF1700',
     marginVertical: 4
   },
   label: {

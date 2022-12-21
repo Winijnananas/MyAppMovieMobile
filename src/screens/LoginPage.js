@@ -9,7 +9,7 @@ import axios from 'axios';
 //import { MYAPP_API } from "@env";
 
 // const navigation = useNavigation()
-const API = "http://10.200.8.111:3000/login";
+const API = "http://192.168.1.31:3000/login";
 const LoginPage = ({navigation}) => { 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -18,7 +18,7 @@ const LoginPage = ({navigation}) => {
       try {
           await AsyncStorage.setItem('@Token', data);
           //console.log(data);
-          navigation.navigate('TabNavigation');
+          navigation.navigate('App');
       } catch(err){
           console.log(err);
       }
@@ -26,7 +26,7 @@ const LoginPage = ({navigation}) => {
 
   const Login = ({ }) => { console.log('login');
          //axios.post(`${MYAPP_API}}/login`
-         axios.post(`http://10.200.8.111:3000/login`,
+         axios.post(`http://192.168.1.31:3000/login`,
          {
             username: username,
             password: password

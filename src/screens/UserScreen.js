@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 
+import LogoutButton from '../compenents/LogoutButton';
 
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,17 +18,7 @@ export default function UserScreen({ navigation }) {
     const [user, setUser] = useState({})
    // const [isLoading, setIsLoading] = useState(true)
 
-    const Logout = async() => {
-        const navigation = useNavigation();
-        const logout = async() => {
-            try {
-                await AsyncStorage.removeItem('@Token');
-                navigation.replace('Login');
-            }catch(error){
-                console.log(error.message);
-            }
-        }
-    }
+   
 
     return (
         <ScrollView>
@@ -45,10 +36,12 @@ export default function UserScreen({ navigation }) {
                 
                 <TouchableOpacity style={styles.loginBtn}
                 // onPress={fetchUser}
-                onPress={Logout}
+                //onPress={Logout}
+                
                     // onPress={() => navigation.navigate('Login')}
                     >
-                    <Text style={styles.logOutBtn}>LogOut</Text>
+                        <LogoutButton/>
+                    
                 </TouchableOpacity>
                
 

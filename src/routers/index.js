@@ -22,7 +22,7 @@ export default function() {
           <Stack.Screen name="Regis" component={RegisterScreen}/>
           <Stack.Screen name='User' component={UserScreen}/>
           <Stack.Screen name='Details' component={DetailsMovieScreen}/>
-          <Stack.Screen name="TabNavigation" component={BottomTabs} />
+          <Stack.Screen name="App" component={BottomTabs} />
     </Stack.Navigator>
     
   );

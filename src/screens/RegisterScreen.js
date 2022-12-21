@@ -17,7 +17,7 @@ export default function RegisterScreen({ navigation }) {
 
 
     
-   const API = "http://10.200.8.111:3000/users";
+   const API = "http://192.168.1.31:3000/users";
     // const API = "http://127.0.0.1:3000/users";
     const register = () => {
         if(!username || !email || !password || !fname ) {
@@ -29,7 +29,7 @@ export default function RegisterScreen({ navigation }) {
             return;
         }
         //axios.post(`${MYAPP_API}}/users`,
-        axios.post(`http://10.200.8.111:3000/users`,
+        axios.post(`http://192.168.1.31:3000/users`,
        
         {
           fname : fname,
