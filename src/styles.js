@@ -89,6 +89,12 @@ const styles = StyleSheet.create({
           width: 300,
           
       },
+      headerlogin:{
+        marginBottom: 1,
+    height: 10,
+    width: 10,
+    right:100
+      }
 });
 
 module.exports = styles;

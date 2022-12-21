@@ -58,7 +58,7 @@ export default function RegisterScreen({ navigation }) {
     >
        
             <View style={{display: 'flex', justifyContent: 'flex-start', height: '100%'}}> 
-            <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 10, marginTop: 80,right: 120,left:4 ,color:'white'}}>REGISTER   </Text>
+            <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 10, marginTop: 80,right: 120,left:4 ,color:'white'}}>SIGN UP  </Text>
             <View>
 
             <TextInput
@@ -66,20 +66,23 @@ export default function RegisterScreen({ navigation }) {
                 style={styles.textInput}
                 onChangeText={setEmail}
                 value={email}
+                clearButtonMode="always"
             />
             <TextInput
                 
                 placeholder='Fullname'
                 style={styles.textInput}
                 onChangeText={SetfName}
-                value={fname}    
+                value={fname}
+                clearButtonMode="always"
             />
             <TextInput
                 
                 placeholder='Username'
                 style={styles.textInput}
                 onChangeText={setUsername}
-                value={username}    
+                value={username}
+                clearButtonMode="always"    
             />
       
             <TextInput
@@ -88,6 +91,7 @@ export default function RegisterScreen({ navigation }) {
                 style={styles.textInput}
                 onChangeText={setPassword}
                 value={password}
+                clearButtonMode="always"
             />
             <TextInput
                 secureTextEntry={true}
@@ -95,11 +99,18 @@ export default function RegisterScreen({ navigation }) {
                 style={styles.textInput}
                 onChangeText={setConfirm}
                 value={confirm}
+                clearButtonMode="always"
             />
             <TouchableOpacity style={styles.RegisBtn}
                 onPress={register}>
                 <Text style={styles.buttonLabel}>SUBMIT</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={{marginVertical: 10,flexDirection: 'row'}}
+            onPress={() => {navigation.navigate('Login')}}
+          >
+           <Text style={{color:'#ffff'}}>If already account ?</Text>
+           <Text style={{color: '#FFF', fontWeight: '700', fontSize: 15, textAlign: 'left',marginLeft:5,backgroundColor:'#1F9B5E'}}>Sign In</Text>
+          </TouchableOpacity>
             </View>
             </View>
        

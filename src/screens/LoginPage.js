@@ -35,7 +35,7 @@ const LoginPage = ({navigation}) => {
             if(response.data.status === 'ok'){
                 _storeData(response.data.token);
             } else{
-                alert('Login fail');
+                alert('Please,Enter your Account');
             }
         })
         .catch((err) => {
@@ -44,97 +44,7 @@ const LoginPage = ({navigation}) => {
     }
     
 
-    // const navigation = useNavigation()
-
-    // useEffect(() => {
-    //   const unsubscribe = auth.onAuthStateChanged(user => {
-    //     if (user) {
-    //       navigation.replace("Home")
-    //     }
-    //   })
-  
-    //   return unsubscribe
-    // }, [])
-  
-
-   // const API = "http://192.168.47.1:3000/users";
-
     
-    // const API = "http://127.0.0.1:3000/users";
-  //   const login = () => {
-  //       if(!username || !email || !password ) {
-  //         alert('Complete your information');
-  //         return;
-  //       }
-  //       if(password !== confirm){
-  //           alert('Password not match,Please Try Again')
-  //           return;
-  //       }
-  //       axios.post(API, {
-  //         username: username,
-  //         email: email,
-  //         password: password,
-
-  //       })
-  //       .then((response) => {
-  //         if(response.data.status === 'ok') {
-  //           // alert('LOGIN COMPLETE')
-  //           navigation.navigate('TabNavigation');
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log('Can not connect',error.message);
-  //       })
-  //     }
-
-  //  const handleLogin =async () =>{
-  //   const response = await fetch('https://www.melivecode.com/api/login',{
-  //   method: 'POST',
-  //   headers:{
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     username:username,
-  //     password:password,
-  //     expiresIn:60000
-      
-  //     // expiresIn:60000
-  //   })
-  //   })
-  //   const data = await response.json()
-  //   if(data.status == 'ok'){
-  //     Alert.alert(
-  //       data.status,
-  //       data.message,
-  //       [
-  //         { text: "OK", onPress: () => console.log("OK Pressed") }
-  //       ]
-  //     );
-  //     await AsyncStorage.setItem('@accessToken', data.accessToken)
-  //     const accessToken = await AsyncStorage.getItem('@accessToken')
-  //     // navigation.navigate('User')
-  //     navigation.navigate('TabNavigation')
-  //     console.log(accessToken)
-  //   }else{
-  //     Alert.alert(
-  //       data.status,
-  //       data.message,
-  //       [
-  //         { text: "OK", onPress: () => console.log("OK Pressed") }
-  //       ]
-  //     );
-  //   }
-  //  }
-  
-    // const handleLogin = () => {
-    //   auth
-    //     .signInWithEmailAndPassword(email, password)
-    //     .then(userCredentials => {
-    //       const user = userCredentials.user;
-    //       console.log('Logged in with:', user.email);
-    //     })
-    //     .catch(error => alert(error.message))
-    // }
 return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -142,20 +52,11 @@ return (
     >
       
       <View style={{display: 'flex', justifyContent: 'flex-start', height: '100%'}}>
-     
+
       <Text style={styles.title}>SIGN IN</Text>
       
         <View>
-        {/* <TextInput 
-            style={styles.textInput}
-            onChangeText={onChangeText2}
-            value={email}
-            placeholderTextColor="#A9A9A9"
-            // secureTextEntry 
-            // right={<TextInput.Icon icon="eye"/>}
-            // secureTextEntry={true}
-            // autoCapitalize = 'none'
-            placeholder="Email" /> */}
+      
 
           <TextInput 
             style={styles.textInput}
@@ -163,7 +64,9 @@ return (
             value={username}
             placeholderTextColor="#A9A9A9"
             autoCapitalize = 'none'
-            placeholder="Username" />
+            placeholder="Username" 
+            clearButtonMode="always"
+            />
 
           <TextInput 
             style={styles.textInput}
@@ -174,7 +77,9 @@ return (
             // right={<TextInput.Icon icon="eye"/>}
             secureTextEntry={true}
             autoCapitalize = 'none'
-            placeholder="Password" />
+            placeholder="Password"
+            clearButtonMode="always"
+            />
             
 
           <TouchableOpacity
@@ -189,10 +94,11 @@ return (
           </TouchableOpacity>
 
           { /* register */}
-          <TouchableOpacity style={{marginVertical: 10}}
+          <TouchableOpacity style={{marginVertical: 10,flexDirection: 'row'}}
             onPress={() => {navigation.navigate('Regis')}}
           >
-            <Text style={{color: '#FFFF', fontWeight: '700', textDecorationLine: 'underline', fontSize: 15, textAlign: 'left'}}>Register your Account</Text>
+           <Text style={{color:'#ffff'}}>New User?</Text>
+           <Text style={{color: '#FFF', fontWeight: '700', textDecorationLine: 'underline', fontSize: 15, textAlign: 'left',marginLeft:5}}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
