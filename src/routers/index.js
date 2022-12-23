@@ -10,7 +10,7 @@ import DetailsMovieScreen from '../screens/DetailsMovieScreen';
 import BottomTabs from '../navigations/BottomTabs';
 import LoginPage from "../screens/LoginPage";
 import LoginScreen from '../screens/LoginScreen';
-
+import InfomovieScreen from '../screens/InfomovieScreen';
 
 const Stack =createStackNavigator();
 
@@ -23,6 +23,7 @@ export default function() {
           <Stack.Screen name='User' component={UserScreen}/>
           <Stack.Screen name='Details' component={DetailsMovieScreen}/>
           <Stack.Screen name="App" component={BottomTabs} />
+          <Stack.Screen name='Info' component={InfomovieScreen}/>
     </Stack.Navigator>
     
   );

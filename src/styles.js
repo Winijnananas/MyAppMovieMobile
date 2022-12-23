@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         marginBottom: 1,
     height: 10,
     width: 10,
-    right:100
+    
       }
 });
 

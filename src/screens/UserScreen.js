@@ -5,7 +5,7 @@ import React,{ useState,useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
-
+import { useIsFocused } from '@react-navigation/native';
 import LogoutButton from '../compenents/LogoutButton';
 
 // import { NavigationContainer } from '@react-navigation/native';
@@ -13,12 +13,45 @@ import LogoutButton from '../compenents/LogoutButton';
 
 
 
+
 export default function UserScreen({ navigation }) {
    // const [editprofile, onChangeText] = React.useState("Edit Profile"); 
-    const [user, setUser] = useState({})
-   // const [isLoading, setIsLoading] = useState(true)
 
+
+
+   const API = "http://192.168.1.31:3000/users/me"; 
+const [username, setUsername] = useState();
+const [token, setToken] = useState();
+const [isLoading, setIsLoading] = useState(false);
+
+const getToken = ( async () => {
+    const TK = await AsyncStorage.getItem('@Token');
+    setToken(TK);
+  });
+
+  getToken();
+  console.log(getToken())
    
+
+
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    if(isFocused) {
+      const fetchUser = async() => {
+        const response = await axios.get(`http://192.168.1.31:3000/users/me`, {
+          headers: {
+            "Authorization" : `Bearer ${token}`
+          }
+        });
+        if(response.data.status === 200) {
+          setUser(response.data.user);
+          setIsLoaded(true);
+        }
+      }
+
+      fetchUser();
+    }
+  }, [isFocused])
 
     return (
         <ScrollView>
@@ -32,7 +65,7 @@ export default function UserScreen({ navigation }) {
                 {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
 
                 <Image style={styles.image} source={require("../../assets/user.png")} />
-               
+              
                 
                 <TouchableOpacity style={styles.loginBtn}
                 // onPress={fetchUser}
