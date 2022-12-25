@@ -18,7 +18,7 @@ export default function RegisterScreen({ navigation }) {
 
     
    //const API_Regis = "http://192.168.1.31:3000/users";
-   const API_Regis = "http://192.168.47.1:3000/users";
+   const API_Regis = "http://192.168.1.31:3000/users";
     // const API = "http://127.0.0.1:3000/users";
     const register = () => {
         if(!username || !email || !password || !fname ) {

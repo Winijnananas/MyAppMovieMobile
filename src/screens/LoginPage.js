@@ -12,7 +12,7 @@ import axios from 'axios';
 //const API_login = "http://192.168.1.31:3000/login";
 
 const LoginPage = ({ navigation }) => {
-  const API_login = "http://192.168.47.1:3000/login";
+  const API_login = "http://192.168.1.31:3000/login";
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 

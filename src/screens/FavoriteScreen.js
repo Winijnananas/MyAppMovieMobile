@@ -10,7 +10,8 @@ import {
   Text, 
   Alert, 
   LinearGradient,
-  ScrollView 
+  ScrollView,
+  FlatList
 } from 'react-native';
 import logo from '../../assets/image/harryPotterOrig.jpg';
 import logos from '../../assets/image/bruceAlmighty.jpg' ;
@@ -35,7 +36,10 @@ export default function DetailsScreen({ navigation }) {
         // </View>
         <SafeAreaView style={styles.container}>
         <ScrollView>
-          <View>
+          <Text style={{flex: 1, alignItems: 'center', justifyContent: 'center',alignContent:'center'}}>
+          Favorite Screen ♥
+          </Text>
+          {/* <View>
             <View>
               <Text></Text>
               <Text></Text>
@@ -113,7 +117,7 @@ export default function DetailsScreen({ navigation }) {
             </View>
           </View>
     
-          <Separator />
+          <Separator /> */}
         </ScrollView>
       </SafeAreaView>
     );

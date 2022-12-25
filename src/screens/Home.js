@@ -11,8 +11,8 @@ import { useIsFocused } from '@react-navigation/native';
 //const API_MOVIE="http://192.168.1.31:3000/movies";
 
 const Home = ({ navigation }) => {
- const API_MOVIE = "http://192.168.47.1:3000/movies";
-  const API_POP = "http://192.168.47.1:3000/populars";
+ const API_MOVIE = "http://192.168.1.31:3000/movies";
+  const API_POP = "http://192.168.1.31:3000/populars";
   const [movie, setMovie] = useState([]);
   const [moviesPop, SetPopular] = useState([]);
   // const [isLoading, setIsLoading] =useState(true);
@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
         
       })
       .catch(function (error) {
-        console.log(error);
+        console.log('Can not connect',error.message);
       })
     }
     
@@ -98,7 +98,6 @@ fetchMovies();
             style={{marginLeft:5}}
               key={key} onPress={() => navigation.navigate('Info', { item })}>
               <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
-              <Text>{item.text}</Text>
             </TouchableOpacity>
         
           )
@@ -128,6 +127,47 @@ fetchMovies();
           
         })
       }
+      
+    </ScrollView>
+    <ScrollView
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+    style={{textAlign:'left'}}
+    > 
+      { movie.map((item, key) => {
+          return (
+            <TouchableOpacity
+            style={{marginLeft:5}}
+              key={key} onPress={() => navigation.navigate('Info', { item })}>
+              <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
+              <Text>{item.text}</Text>
+            </TouchableOpacity>
+        
+          )
+          
+        })
+      }
+      
+    </ScrollView>
+    <ScrollView
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+    style={{textAlign:'left'}}
+    > 
+      { movie.map((item, key) => {
+          return (
+            <TouchableOpacity
+            style={{marginLeft:5}}
+              key={key} onPress={() => navigation.navigate('Info', { item })}>
+              <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
+              <Text>{item.text}</Text>
+            </TouchableOpacity>
+        
+          )
+          
+        })
+      }
+      
     </ScrollView>
     </ScrollView>
     </SafeAreaView>
@@ -156,8 +196,15 @@ const styles = StyleSheet.create({
 
     width: 150, height: 250,
     marginTop: 5,
-    borderRadius: 2,
+    borderRadius: 10,
     marginRight: 5,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+  },
+  shadowOpacity: 5,
+  shadowRadius: 4.65
+    
   },
   header: {
     marginTop: 0,
@@ -172,6 +219,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: "100%",
     fontWeight: 'bold',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+  },
+  shadowOpacity: 5,
+  shadowRadius: 4.65
 
 
     //fontWeight:'bold'
@@ -180,7 +233,7 @@ const styles = StyleSheet.create({
   },
   headerNormal: {
     marginTop: 5,
-    fontSize: 15,
+    fontSize: 25,
     backgroundColor: "#333333",
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -191,6 +244,12 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: "100%",
     fontWeight: 'bold',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+  },
+  shadowOpacity: 2,
+  shadowRadius: 4.65
     //marginBottom:200,
   },
   labelSearch: {

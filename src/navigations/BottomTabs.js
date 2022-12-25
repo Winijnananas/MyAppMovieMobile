@@ -48,7 +48,7 @@ export default function TabNavigation() {
                 name='Favorite'
                 component={DetailsScreen}
                 options={{
-                    tabBarShowLabel: false,
+                    tabBarShowLabel: true,
                     tabBarIcon: ({ color, size }) => (
                         //<MaterialCommunityIcons name="bookmark-multiple" color={color} size={size} />
                         <MaterialCommunityIcons name="heart-multiple" color={color} size={size} />
@@ -71,7 +71,7 @@ export default function TabNavigation() {
                 name='User'
                 component={UserScreen}
                 options={{
-                    tabBarShowLabel: false,
+                    tabBarShowLabel: true,
                     tabBarIcon: ({ color, size }) => (
                         // <Icon solid name="id-card" color={color} size={size} />
                         //<MaterialCommunityIcons name="account" color={color} size={size} />
