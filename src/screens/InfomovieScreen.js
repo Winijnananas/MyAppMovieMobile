@@ -147,6 +147,18 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.27,
         shadowRadius: 4.65,
+    },
+    Comedy:{
+        backgroundColor: '#e6e600',
+        width: "20%", textAlign: 'center', padding: 5, marginTop: 2, color: 'white', fontWeight: 'bold', borderRadius: 20,
+        padding: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
     }
 
 });
