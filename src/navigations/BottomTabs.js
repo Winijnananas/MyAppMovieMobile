@@ -74,7 +74,9 @@ export default function TabNavigation() {
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color, size }) => (
                         // <Icon solid name="id-card" color={color} size={size} />
-                        <MaterialCommunityIcons name="account" color={color} size={size} />
+                        //<MaterialCommunityIcons name="account" color={color} size={size} />
+                        <MaterialCommunityIcons name="format-list-bulleted" color={color} size={size} />
+                        
                     ),
                 }}
             />

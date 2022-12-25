@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20
   },
   title: {
-    left:145,
+    textAlign:'center',
     justifyContent: 'center',
     
     fontSize: 35,

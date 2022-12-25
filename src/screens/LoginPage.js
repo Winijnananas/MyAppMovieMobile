@@ -88,8 +88,8 @@ const LoginPage = ({ navigation }) => {
 
           <TouchableOpacity
             style={styles.loginButton}
-            // onPress={() =>navigation.navigate('TabNavigation')}
-            onPress={Login}
+             onPress={() =>navigation.navigate('App')}
+            //onPress={Login}
           >
             <Text style={styles.buttonLabel}
             // onPress={login}
