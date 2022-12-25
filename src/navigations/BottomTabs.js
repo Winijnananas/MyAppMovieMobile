@@ -20,20 +20,20 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
     return (
         <Tab.Navigator
-            screenOptions={{ headerShown: false, tabBarActiveTintColor: '#BF1700', tabBarInactiveTintColor: 'black', tabBarStyle: { backgroundColor: 'white', borderBottomColor: 'black' } }}>
+            screenOptions={{ headerShown: false, tabBarActiveTintColor: '#BF1700', tabBarInactiveTintColor: '#FFF', tabBarStyle: { backgroundColor: '#1B1B1B', borderBottomColor: 'black' } }}>
             <Tab.Screen
                 
                 name="Home"
                 component={Home}
                 options={{
-                    tabBarShowLabel: false,
+                    tabBarShowLabel: true,
                     tabBarIcon: ({ color, size }) => (
                         //<MaterialCommunityIcons name="home" color={color} size={size} />
                         <MaterialCommunityIcons name="home-variant" color={color} size={size} />
                     ),
                 }}
             />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name='Feed'
                 component={FeedScreen}
                 options={{
@@ -42,7 +42,7 @@ export default function TabNavigation() {
                         <MaterialCommunityIcons name="movie-search" color={color} size={size} />
                     ),
                 }}
-            />
+            /> */}
             
             <Tab.Screen
                 name='Favorite'
@@ -55,7 +55,7 @@ export default function TabNavigation() {
                     ),
                 }}
             />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name='Setting'
                 component={AboutScreen}
                 options={{
@@ -66,7 +66,7 @@ export default function TabNavigation() {
                         
                     ),
                 }}
-            />
+            /> */}
             <Tab.Screen
                 name='User'
                 component={UserScreen}

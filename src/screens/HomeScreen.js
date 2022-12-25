@@ -16,6 +16,7 @@ import {
   Pressable
 } from 'react-native';
 
+
 import logo from '../../assets/image/dieHard.jpg';
 import logogo from '../../assets/image/l-intro.jpg' ;
 import logos from '../../assets/image/theDarkKnight.jpg' ;
@@ -109,14 +110,9 @@ useEffect(()=>{
       <Text></Text>
       <Text></Text>
       
-      <Image source={logo} 
-      style={{ width: 180, height: 300 }} 
-      />
+      <Image source={{ uri: item.url }} style = {{ width: 100, height: 100 }} resizeMode="cover"/>
       <View style={styles.fixToText}>
-        <Text style={styles.title} 
-        onPress={() => navigation.navigate('Details')}>
-        Die Hard (1988)
-        </Text>
+      <Text style={{fontSize:20,fontWeight:'bold'}}>{item.title}</Text>
         <AntDesign style={{padding: 10, right: -5}} name="heart" size={20} color="red" />
         <Text style={styles.title}>
         90 %

@@ -19,7 +19,8 @@ export default function UserScreen({ navigation }) {
 
 
 
-   const API = "http://192.168.1.31:3000/users/me"; 
+   //const API_User_me = "http://192.168.1.31:3000/users/me"; 
+   const API_User_me = "http://192.168.47.1:3000/users/me"; 
 const [username, setUsername] = useState();
 const [token, setToken] = useState();
 const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +39,8 @@ const getToken = ( async () => {
   useEffect(() => {
     if(isFocused) {
       const fetchUser = async() => {
-        const response = await axios.get(`http://192.168.1.31:3000/users/me`, {
+        // const response = await axios.get(`http://192.168.1.31:3000/users/me`, {
+        const response = await axios.get(API_User_me, {
           headers: {
             "Authorization" : `Bearer ${token}`
           }

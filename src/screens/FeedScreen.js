@@ -6,14 +6,8 @@ export default function FeedScreen() {
     <View
       style={styles.item}>
         
-        <Image 
-        style={styles.poster}
-
-        source={{
-          uri:"http://image.tmdb.org/t/p/w342" + props.item.poster_path,
-        }}
-        />
-      <Text style={{fontSize:30,fontWeight:'bold'}}>FEED SCREEN👋</Text>
+        
+      <Text style={{fontSize:30,fontWeight:'bold',}}>FEED SCREEN👋</Text>
   
     </View>
   )

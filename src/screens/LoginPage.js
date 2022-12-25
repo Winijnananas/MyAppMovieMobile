@@ -2,73 +2,77 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View ,ScrollView,SafeAreaView,Image,Alert} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, SafeAreaView, Image, Alert } from 'react-native'
 // import { auth } from '../../firbase'
 import styles from '../styles';
 import axios from 'axios';
 //import { MYAPP_API } from "@env";
 
 // const navigation = useNavigation()
-const API = "http://192.168.1.31:3000/login";
-const LoginPage = ({navigation}) => { 
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
+//const API_login = "http://192.168.1.31:3000/login";
 
-    const _storeData = async (data) => {
-      try {
-          await AsyncStorage.setItem('@Token', data);
-          //console.log(data);
-          navigation.navigate('App');
-      } catch(err){
-          console.log(err);
-      }
+const LoginPage = ({ navigation }) => {
+  const API_login = "http://192.168.47.1:3000/login";
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const _storeData = async (data) => {
+    try {
+      await AsyncStorage.setItem('@Token', data);
+      //console.log(data);
+      navigation.navigate('App');
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  const Login = ({ }) => { console.log('login');
-         //axios.post(`${MYAPP_API}}/login`
-         axios.post(`http://192.168.1.31:3000/login`,
-         {
-            username: username,
-            password: password
-        })
-        .then((response) => {
-            if(response.data.status === 'ok'){
-                _storeData(response.data.token);
-            } else{
-                alert('Please,Enter your Account');
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }
-    
+  const Login = ({ }) => {
+    console.log('login');
+    //axios.post(`${MYAPP_API}}/login`
+    //axios.post(`API_login`,
+    axios.post(API_login,
+      {
+        username: username,
+        password: password
+      })
+      .then((response) => {
+        if (response.data.status === 'ok') {
+          _storeData(response.data.token);
+        } else {
+          alert('Please,Enter your Account');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
-    
-return (
+
+
+  return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior="padding"
     >
-      
-      <View style={{display: 'flex', justifyContent: 'flex-start', height: '100%'}}>
 
-      <Text style={styles.title}>SIGN IN</Text>
-      
+      <View style={{ display: 'flex', justifyContent: 'flex-start', height: '100%' }}>
+
+        <Text style={styles.title}>SIGN IN</Text>
+
         <View>
-      
 
-          <TextInput 
+
+          <TextInput
             style={styles.textInput}
             onChangeText={setUsername}
             value={username}
             placeholderTextColor="#A9A9A9"
-            autoCapitalize = 'none'
-            placeholder="Username" 
+            autoCapitalize='none'
+            placeholder="Username"
             clearButtonMode="always"
-            />
+          />
 
-          <TextInput 
+          <TextInput
             style={styles.textInput}
             onChangeText={setPassword}
             value={password}
@@ -76,11 +80,11 @@ return (
             // secureTextEntry 
             // right={<TextInput.Icon icon="eye"/>}
             secureTextEntry={true}
-            autoCapitalize = 'none'
+            autoCapitalize='none'
             placeholder="Password"
             clearButtonMode="always"
-            />
-            
+          />
+
 
           <TouchableOpacity
             style={styles.loginButton}
@@ -94,11 +98,11 @@ return (
           </TouchableOpacity>
 
           { /* register */}
-          <TouchableOpacity style={{marginVertical: 10,flexDirection: 'row'}}
-            onPress={() => {navigation.navigate('Regis')}}
+          <TouchableOpacity style={{ marginVertical: 10, flexDirection: 'row' }}
+            onPress={() => { navigation.navigate('Regis') }}
           >
-           <Text style={{color:'#ffff'}}>New User?</Text>
-           <Text style={{color: '#FFF', fontWeight: '700', textDecorationLine: 'underline', fontSize: 15, textAlign: 'left',marginLeft:5}}>Sign Up</Text>
+            <Text style={{ color: '#ffff' }}>New User?</Text>
+            <Text style={{ color: '#FFF', fontWeight: '700', textDecorationLine: 'underline', fontSize: 15, textAlign: 'left', marginLeft: 5 }}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
