@@ -9,7 +9,9 @@ export default function InfomovieScreen({ navigation, route: { params: { item } 
     return (
         <SafeAreaView
             style={styles.container}>
-            <ScrollView>
+            <ScrollView
+            showsVerticalScrollIndicator={false}
+            >
                 {/* <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Detail ♥</Text> */}
                 <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
                 <View style={styles.containDetail}>
@@ -47,7 +49,7 @@ export default function InfomovieScreen({ navigation, route: { params: { item } 
 
                 <View style={styles.containDetail}>
                     <Text style={styles.labelOverview}>Overview</Text>
-                    <Text style={{ padding: 5, backgroundColor: '#f2f2f2' }}>{item.desc}</Text>
+                    <Text style={{ padding: 5, backgroundColor: '#f2f2f2',textAlign: 'center' }}>{item.desc}</Text>
                 </View>
                 <View style={styles.containDetail}>
                     <Text style={styles.labeltile}>Trailer</Text>
@@ -70,7 +72,7 @@ export default function InfomovieScreen({ navigation, route: { params: { item } 
                     onPress={() => navigation.navigate('App')}
                 >
                     <Text style={{
-                        backgroundColor: "#BF1700", padding: 10, fontSize: 20, fontWeight: 'bold', color: '#fff', textAlign: 'center', width: "100%", borderRadius: 20, shadowColor: "#000",
+                        backgroundColor: "#BF1700", padding: 10, fontSize: 20, fontWeight: 'bold', color: '#fff', textAlign: 'center', width: "100%", borderRadius: 10, shadowColor: "#000",
                         shadowOffset: {
                             width: 0,
                             height: 3,
@@ -104,6 +106,7 @@ const styles = StyleSheet.create({
     labelOverview: {
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: 'left'
 
     },
     containDetail: {
