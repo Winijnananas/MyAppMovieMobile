@@ -116,8 +116,8 @@ fetchMovies();
             <TouchableOpacity  onPress={() => navigation.navigate('Info',{item})}>
               
               <View>
-              <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
-                {/* <Text>{ item.title }</Text> */}
+              <Image source={{ uri: item.url }} style={{width:100 , height:150,borderRadius:10,marginTop:5}} resizeMode="cover" />
+              <Text style={{textAlign:'center'}}>{ item.title }</Text>
           
               </View>
             </TouchableOpacity>                     
@@ -155,6 +155,9 @@ if (typeof search === 'string' && search.length === 0) {
       <ScrollView>
       <View>
         <SearchBar
+        round
+        clearIcon={true}
+        cancelButtonTitle='Cancel'
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction('')}
@@ -217,10 +220,9 @@ if (typeof search === 'string' && search.length === 0) {
       <View>
         <SearchBar
           round
-          // showLoading={false}
-          // platform={Platform.OS}
-          // clearIcon={true}
-          // cancelButtonTitle='Cancel'
+           showLoading={false}
+          clearIcon={true}
+          cancelButtonTitle='Cancel'
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction('')}
