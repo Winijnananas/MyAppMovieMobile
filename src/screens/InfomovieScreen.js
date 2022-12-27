@@ -22,6 +22,7 @@ export default function InfomovieScreen({ navigation, route: { params: { item } 
                             },
                             shadowOpacity: 0.4,
                             shadowRadius: 1, }}>{item.title}</Text>
+
                         <View style={{
                             width: 50, height: 48, backgroundColor: "#d9d9d9", borderRadius: 25, justifyContent: 'space-between', alignItems: 'center', shadowColor: "#000",
                             shadowOffset: {
@@ -37,14 +38,21 @@ export default function InfomovieScreen({ navigation, route: { params: { item } 
                 </View>
 
                 <View>
+                
+                </View>
+                <View>
+                    <Text>{item.sectitle}</Text>
+                    <Text>{item.time}</Text>
                 </View>
                 <View style={styles.containDetail}>
-                    <Text style={styles.labeltile}>Type</Text>
+                    <Text style={styles.labeltile}>movieType</Text>
                     {/* <Text style={{ backgroundColor: 'grey', width: "35%", textAlign: 'center', borderRadius: 20, padding: 1, marginTop: 2, color: '#FFF', fontWeight: 'bold' }}>{item.type}</Text> */}
                     <Text style={[styles[item.type], styles.type]}>{item.type}</Text>
                     <Text style={styles.labeltile}>Producer</Text>
                     <Text>{item.produce}</Text>
-
+                    <Text style={styles.labeltile}>nameActor</Text>
+                    <Text>{item.nameactor.join(", ")}</Text>
+                    
                 </View>
 
                 <View style={styles.containDetail}>
@@ -110,7 +118,7 @@ const styles = StyleSheet.create({
 
     },
     containDetail: {
-        padding: 4,
+        padding:4,
         flex: 1,
     },
     containTitle: {
@@ -137,7 +145,7 @@ const styles = StyleSheet.create({
     },
     ActionAdventure: {
         backgroundColor: 'orange',
-        width: "35%", textAlign: 'center', borderRadius: 20, padding: 5, marginTop: 2, color: 'white', fontWeight: 'bold'
+        width: "35%", textAlign: 'center', borderRadius: 10, padding: 5, marginTop: 2, color: 'white', fontWeight: 'bold'
     },
     Fantasy: {
         backgroundColor: 'purple',
@@ -153,7 +161,7 @@ const styles = StyleSheet.create({
     },
     Comedy:{
         backgroundColor: '#e6e600',
-        width: "20%", textAlign: 'center', padding: 5, marginTop: 2, color: 'white', fontWeight: 'bold', borderRadius: 20,
+        width: "20%", textAlign: 'center', padding: 5, marginTop: 2, color: 'white', fontWeight: 'bold', borderRadius: 10,
         padding: 5,
         shadowColor: "#000",
         shadowOffset: {

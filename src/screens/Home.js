@@ -1,20 +1,26 @@
-import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, Image ,FlatList} from 'react-native'
 import React, { Component, useEffect, useState } from 'react';
 import reminderBow from 'react-native-ico-material-design/src/data/material-design/reminder-bow';
 import Movie from '../models/Movie';
 import axios from 'axios';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useIsFocused } from '@react-navigation/native';
-
+import { ListItem, SearchBar } from 'react-native-elements';
 //const API_URL="https://www.themoviedb.org/movie/";
 
 //const API_MOVIE="http://192.168.1.31:3000/movies";
 
 const Home = ({ navigation }) => {
- const API_MOVIE = "http://192.168.1.31:3000/movies";
-  const API_POP = "http://192.168.1.31:3000/populars";
+ //const API_MOVIE = "http://192.168.1.31:3000/movies";
+ const API_MOVIE = "http://192.168.47.1:3000/movies";
+ //const API_POP = "http://192.168.1.31:3000/populars";
+  const API_POP = "http://192.168.47.1:3000/populars";
   const [movie, setMovie] = useState([]);
   const [moviesPop, SetPopular] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [masterDataSource, setMasterDataSource] = useState([]);
+
   // const [isLoading, setIsLoading] =useState(true);
   // const [search, setSearch] = useState('');
   // const [filteredDataSource, setFilteredDataSource] = useState([]);
@@ -22,6 +28,18 @@ const Home = ({ navigation }) => {
 
   const isFocused = useIsFocused();
   useEffect(() => {
+    fetch(API_MOVIE)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          setFilteredDataSource(responseJson);
+          setMasterDataSource(responseJson);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+        
+
     if(isFocused){
       axios.get(API_POP)
       .then(function (response) {
@@ -54,45 +72,106 @@ const fetchMovies =async()=>{
   const response = await axios(API_MOVIE);
   const data = await response.data;
   setMovie(data);
-  console.log(data)
+  //console.log(data)
 };
 fetchMovies();
 },[]);
 
 
 
-
-  //function Search
-
+//get profile
 
 
+//   //function Search
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSourcejobTitle
+      // Update FilteredDataSource
+      const newData = masterDataSource.filter(function (item) {
+        const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
+    }
+  };
+
+  //item view
+  const ItemView = ({ item }) => {
+    return (
+      // Flat List Item
+        <SafeAreaView>
+          <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}          
+          >
+            <TouchableOpacity  onPress={() => navigation.navigate('Info',{item})}>
+              
+              <View>
+              <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
+                {/* <Text>{ item.title }</Text> */}
+          
+              </View>
+            </TouchableOpacity>                     
+          </ScrollView>
+        </SafeAreaView>
+    );
+  };
+  //flatlist
+  const ItemSeparatorView = () => {
+    
+    return (
+      
+      // Flat List Item Separator
+      <View
+      
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#333333',
+        }}
+      />
+    );
+  };
+//getItem
+const getItem = (item) => {
+    // Function for click on an item
+    alert('Id : ' + item.id + 'title: ' + item.title);
+  };
 
 
 
-
+if (typeof search === 'string' && search.length === 0) {
   return (
-    // <View
-    //   style={styles.container}>
-    //   <Text style={{fontSize:30,fontWeight:'bold'}}>Home ♥</Text>
-    //   </View>
-
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <View style={styles.labelSearch}>
-        <Text style={{color:"white"}}>
-          Search
-        </Text>
-        <MaterialCommunityIcons name="magnify" size={25} color="white"/>
+      <View>
+        <SearchBar
+          searchIcon={{ size: 24 }}
+          onChangeText={(text) => searchFilterFunction(text)}
+          onClear={(text) => searchFilterFunction('')}
+          placeholder="Search here"
+          value={search}
+        />
       </View>
       <View>
         <Text style={styles.header}>Top rated movies most watched TODAY🔥</Text>
       </View>
-    <ScrollView
+      <ScrollView 
+      vertical
       horizontal={true}
       showsHorizontalScrollIndicator={false}
     style={{textAlign:'left'}}
-    >
-     { moviesPop.map((item, key) => {
+    > 
+      { moviesPop.map((item, key) => {
           return (
             <TouchableOpacity
             style={{marginLeft:5}}
@@ -103,32 +182,12 @@ fetchMovies();
           )
           
         })
-      }  
+      }
       
     </ScrollView>
     <View>
         <Text style={styles.headerNormal}>Now Showing</Text>
       </View>
-      <ScrollView
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-    style={{textAlign:'left'}}
-    > 
-      { movie.map((item, key) => {
-          return (
-            <TouchableOpacity
-            style={{marginLeft:5}}
-              key={key} onPress={() => navigation.navigate('Info', { item })}>
-              <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
-              <Text>{item.text}</Text>
-            </TouchableOpacity>
-        
-          )
-          
-        })
-      }
-      
-    </ScrollView>
     <ScrollView
       horizontal={true}
       showsHorizontalScrollIndicator={false}
@@ -140,7 +199,6 @@ fetchMovies();
             style={{marginLeft:5}}
               key={key} onPress={() => navigation.navigate('Info', { item })}>
               <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
-              <Text>{item.text}</Text>
             </TouchableOpacity>
         
           )
@@ -148,32 +206,88 @@ fetchMovies();
         })
       }
       
-    </ScrollView>
-    <ScrollView
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-    style={{textAlign:'left'}}
-    > 
-      { movie.map((item, key) => {
-          return (
-            <TouchableOpacity
-            style={{marginLeft:5}}
-              key={key} onPress={() => navigation.navigate('Info', { item })}>
-              <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
-              <Text>{item.text}</Text>
-            </TouchableOpacity>
-        
-          )
-          
-        })
-      }
-      
-    </ScrollView>
-    </ScrollView>
+   
+      </ScrollView>
+      </ScrollView>
     </SafeAreaView>
-
+  );
+} else {
+  return (
+    <SafeAreaView>
+      <View>
+        <SearchBar
+          round
+          // showLoading={false}
+          // platform={Platform.OS}
+          // clearIcon={true}
+          // cancelButtonTitle='Cancel'
+          searchIcon={{ size: 24 }}
+          onChangeText={(text) => searchFilterFunction(text)}
+          onClear={(text) => searchFilterFunction('')}
+          placeholder="SEARCH"
+          value={search}
+        />
+        <FlatList
+        style={{backgroundColor:"white"}}
+        data={filteredDataSource}
+        keyExtractor={(item, index) => index.toString()}
+        ItemSeparatorComponent={ItemSeparatorView}
+        renderItem={ItemView}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
+};
+
+
+
+
+
+
+
+//   return (
+//     // <View
+//     //   style={styles.container}>
+//     //   <Text style={{fontSize:30,fontWeight:'bold'}}>Home ♥</Text>
+//     //   </View>
+
+//     <SafeAreaView style={styles.container}>
+//       <ScrollView>
+//       <View style={styles.labelSearch}>
+//         <Text style={{color:"white"}}>
+//           Search
+//         </Text>
+//         <MaterialCommunityIcons name="magnify" size={25} color="white"/>
+//       </View>
+//       <View>
+//         <Text style={styles.header}>Top rated movies most watched TODAY🔥</Text>
+//       </View>
+//     <ScrollView
+//       horizontal={true}
+//       showsHorizontalScrollIndicator={false}
+//     style={{textAlign:'left'}}
+//     >
+//      { moviesPop.map((item, key) => {
+//           return (
+//             <TouchableOpacity
+//             style={{marginLeft:5}}
+//               key={key} onPress={() => navigation.navigate('Info', { item })}>
+//               <Image source={{ uri: item.url }} style={styles.poster} resizeMode="cover" />
+//             </TouchableOpacity>
+        
+//           )
+          
+//         })
+//       }  
+      
+//     </ScrollView>
+   
+//     </ScrollView>
+//     </SafeAreaView>
+
+//   );
+// }
 
 
 const styles = StyleSheet.create({
@@ -233,7 +347,7 @@ const styles = StyleSheet.create({
   },
   headerNormal: {
     marginTop: 5,
-    fontSize: 25,
+    fontSize: 15,
     backgroundColor: "#333333",
     paddingHorizontal: 10,
     paddingVertical: 5,

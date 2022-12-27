@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import { View, Text, Button, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Image, ImageBackground, Pressable, ScrollView } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Image, ImageBackground, Pressable, ScrollView,ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,6 +7,8 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 import { useIsFocused } from '@react-navigation/native';
 import LogoutButton from '../compenents/LogoutButton';
+import axios from 'axios';
+//import { ActivityIndicator } from 'react-native-paper';
 
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,20 +21,20 @@ export default function UserScreen({ navigation }) {
 
 
 
-  //const API_User_me = "http://192.168.1.31:3000/users/me"; 
-  const API_User_me = "http://192.168.47.1:3000/users/me";
-  //const [username, setUsername] = useState();
-  //const [isLoading, setIsLoading] = useState(false);
+  const API_User_me = "http://192.168.47.1:3000/users/me"; 
+  //const API_User_me = "http://192.168.1.31:3000/users/me";
+  const [isLoading ,setIsLoading] = useState(false);
   const [token, setToken] = useState();
+  const [username,setUser] = useState();
 
-  const getToken = (async () => {
-    const TK = await AsyncStorage.getItem('@Token');
-    setToken(TK);
-    console.log(TK)
-  });
+  const getToken = async () => {
+    //await AsyncStorage.getItem('@Token');
+    setToken(await AsyncStorage.getItem('@Token'));
+    //console.log(token)
+  };
 
   getToken();
-  console.log(getToken())
+  //console.log(getToken())
 
 
 
@@ -48,7 +50,7 @@ export default function UserScreen({ navigation }) {
         });
         if (response.data.status === 200) {
           setUser(response.data.user);
-          setIsLoaded(true);
+          setIsLoading(true);
         }
       }
 
@@ -58,24 +60,51 @@ export default function UserScreen({ navigation }) {
 
   return (
     <ScrollView>
+      
       <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ImageBackground style={{ aspectRatio: 247 / 100, height: 170, marginBottom: 50 }} source={{
+        <ImageBackground style={{ aspectRatio: 247 / 100, height: 170, marginBottom: 5 }} source={{
           uri: "https://i.pinimg.com/originals/71/08/8b/71088b116216f449a4d78d0d8433f10d.jpg"
         }}
 
         ></ImageBackground>
+        {
+          isLoading &&(
+            <View style={{flex:1,textAlign:'center'}}>
+        <Text style={{fontSize:20,fontWeight:'bold'}}>HELLO {username.fname} ♥</Text>
+        </View>
+          )
+        }
+        
 
-        {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
+        
 
-        <Image style={styles.image} source={require("../../assets/user.png")} />
+        {/* <Image style={styles.image} source={require("../../assets/user.png")} /> */}
+        <View>
+        {
+        isLoading && (
+          <View>
+            <Text>{username.fname}</Text>
+            <Text>{username.email}</Text>
+            <TouchableOpacity
+                    onPress={() => navigation.navigate('EditProfile')}
 
+                  >
+                    <Text>Edit</Text>
+                  </TouchableOpacity>
+          </View>
+        )
+      }
+      {
+        !isLoading && (
+          <View>
+            <ActivityIndicator />
+          </View>
+        )
+      }
 
-        <TouchableOpacity style={styles.loginBtn}
-        // onPress={fetchUser}
-        //onPress={Logout}
+        </View>
 
-        // onPress={() => navigation.navigate('Login')}
-        >
+        <TouchableOpacity style={styles.loginBtn}>
           <LogoutButton />
 
         </TouchableOpacity>

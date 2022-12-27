@@ -31,6 +31,7 @@
     "nodemon": "^2.0.20",
     "react": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-elements": "^3.4.3",
     "react-native-fetch": "^2.0.0",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-ico-material-design": "^1.5.3",
@@ -41,6 +42,7 @@
     "react-native-search-box": "^0.0.20",
     "react-native-svg": "^12.3.0",
     "react-native-tab-view": "^3.3.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^5.2.1"
   },
   "devDependencies": {
