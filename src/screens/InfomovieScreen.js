@@ -16,21 +16,7 @@ export default function InfomovieScreen({ navigation, route: { params: { item } 
 //     const [playing,setPlaying] =useState(false);
 // }
 
-async function toggleFavorite(itemId) {
-    const[item,setItem] = React.useState([]);
-    try {
-      // Get the current favorite status of the item
-      const value = await AsyncStorage.getItem(`favorite-${itemId}`);
-  
-      // Toggle the favorite status
-      const isFavorite = value === 'true' ? 'false' : 'true';
-  
-      // Store the new favorite status in AsyncStorage
-      await AsyncStorage.setItem(`favorite-${itemId}`, isFavorite);
-    } catch (error) {
-      // Handle errors here
-    }
-  }
+
     return (
         <SafeAreaView
             style={styles.container}>
