@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import { View, Text, Button, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Image, ImageBackground, Pressable, ScrollView,ActivityIndicator } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Image, ImageBackground, Pressable, ScrollView,ActivityIndicator,Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native'
 import { useIsFocused } from '@react-navigation/native';
 import LogoutButton from '../compenents/LogoutButton';
 import axios from 'axios';
+
+
 //import { ActivityIndicator } from 'react-native-paper';
 
 // import { NavigationContainer } from '@react-navigation/native';
@@ -60,59 +62,74 @@ export default function UserScreen({ navigation }) {
 
   return (
     <ScrollView>
-      
-      <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ImageBackground style={{ aspectRatio: 247 / 100, height: 170, marginBottom: 5 }} source={{
-          uri: "https://i.pinimg.com/originals/71/08/8b/71088b116216f449a4d78d0d8433f10d.jpg"
-        }}
-
-        ></ImageBackground>
-        {
+      <View style={styles.container}>
+          <View style={styles.header}></View>
+          {
           isLoading &&(
-            <View style={{flex:1,textAlign:'center'}}>
-        <Text style={{fontSize:20,fontWeight:'bold'}}>HELLO {username.fname} ♥</Text>
-        </View>
+           
+        <Image source={{ uri: username.urluser }} style={styles.avatar}/>
+ 
+        
           )
         }
-        
+          
+          <View style={styles.body}>
+            <View style={styles.bodyContent}>
+            {
+          isLoading &&(
+           <View style={styles.containerflex}>
+            <Text style={styles.info}>○ Welcome</Text>
+            <Text style={styles.name}>{username.fname}</Text>
+            <Text style={styles.nameuser}>{username.email}</Text>
+            </View>
+          )
+        }
+              <TouchableOpacity style={styles.buttonContainer}
+              onPress={() =>navigation.navigate('Favorite')}
+              >
+              <MaterialCommunityIcons name="heart" color={'red'} size={25}
+              style={{marginLeft:10}} 
+              />
+              <Text style={{marginLeft:5}}>Favorite</Text> 
+              </TouchableOpacity> 
 
-        
 
-        {/* <Image style={styles.image} source={require("../../assets/user.png")} /> */}
-        <View>
-        {
-        isLoading && (
-          <View>
-            <Text>{username.fname}</Text>
-            <Text>{username.email}</Text>
-            <TouchableOpacity
-                    onPress={() => navigation.navigate('EditProfile')}
+              <TouchableOpacity style={styles.buttonContainer}
+              onPress={() =>navigation.navigate('Favorite')}
+              >
+              <MaterialCommunityIcons name="cog" color={'red'} size={25}
+              style={{marginLeft:10}} 
+              />
+              <Text style={{marginLeft:5}}>Favorite</Text> 
+              </TouchableOpacity>   
 
-                  >
-                    <Text>Edit</Text>
-                  </TouchableOpacity>
-          </View>
-        )
-      }
-      {
-        !isLoading && (
-          <View>
-            <ActivityIndicator />
-          </View>
-        )
-      }
 
-        </View>
+              <TouchableOpacity style={styles.buttonContainer}
+              onPress={() => Alert.alert('During develop')}
+              //onPress={() =>navigation.navigate('Favorite')}
+              >
+              <MaterialCommunityIcons name="alert-circle-outline" color={'grey'} size={25}
+              style={{marginLeft:10}} 
+              />
+              <Text style={{marginLeft:5}}>App V.1.0.0</Text> 
+              </TouchableOpacity>   
 
-        <TouchableOpacity style={styles.loginBtn}>
+              <TouchableOpacity style={styles.loginBtn}>
           <LogoutButton />
 
         </TouchableOpacity>
+            </View>
+        </View>
+        
+      </View>
+      
+
+        
 
 
 
-
-      </SafeAreaView>
+     
+      
     </ScrollView>
 
 
@@ -133,11 +150,14 @@ const styles = StyleSheet.create({
     marginBottom: 200
 
   },
+  containerflex:{
+    justifyContent:'center'
+  },
   loginbtn: {
     borderWidth: 0,
     borderRadius: 25,
     padding: 10,
-    margin: 10,
+    margin:0,
     backgroundColor: "red",
     alignItems: "center",
     height: "5%",
@@ -160,6 +180,66 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
   },
-
-
+  header:{
+    backgroundColor: "#303030",
+    height:200,
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom:10,
+    alignSelf:'center',
+    position: 'absolute',
+    marginTop:130
+  },
+  name:{
+    fontSize:22,
+    color:"#FFFFFF",
+    fontWeight:'600',
+  },
+  nameuser:{
+    fontSize:15,
+    color:"black",
+    fontWeight:'500',
+  },
+  body:{
+    marginTop:40,
+  },
+  bodyContent: {
+    flex: 1,
+    alignItems: 'center',
+    padding:30,
+  },
+  name:{
+    fontSize:28,
+    color: "#696969",
+    fontWeight: "600"
+  },
+  info:{
+    fontSize:16,
+    color: "#00BFFF",
+    marginTop:10
+  },
+  description:{
+    fontSize:16,
+    color: "#696969",
+    marginTop:10,
+    textAlign: 'center'
+  },
+  buttonContainer: {
+    marginTop:4,
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom:0,
+    width:'109%',
+    borderRadius:5,
+    backgroundColor: "#3333",
+  },
 });
+
+

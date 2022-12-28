@@ -9,7 +9,6 @@ import UserScreen from '../screens/UserScreen';
 import DetailsMovieScreen from '../screens/DetailsMovieScreen';
 import BottomTabs from '../navigations/BottomTabs';
 import LoginPage from "../screens/LoginPage";
-import LoginScreen from '../screens/LoginScreen';
 import InfomovieScreen from '../screens/InfomovieScreen';
 
 const Stack =createStackNavigator();
